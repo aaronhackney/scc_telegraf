@@ -54,3 +54,8 @@ There is nothing that needs edited in this file. It simply formats the data in a
     [agent]
       debug = true
     ```
+## Grafana Dashboad
+The ftd_dashboard.json file can be imported into Grafana.
+- In Grafana, create a new data source pointing to your InfluxDB database
+- The datasource should point to the bucket where telegraf has been storing data
+- Load the dashboard and select the datasource that you just configured from the dropdown
