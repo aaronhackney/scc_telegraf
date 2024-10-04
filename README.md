@@ -34,7 +34,7 @@ export FMC_UID=<UID of the cdFMC>
 ```
 Then make the environment variable available to the shell with `source env.sh`
 
-Note that you can get your cdFMC UID from the cdFMC API Explorer under System --> `/api/fmc_platform/v1/info/domain` "Try it Now".
+Note that you can get your cdFMC UID from the cdFMC API Explorer under `System` `/api/fmc_platform/v1/info/domain`.
 ![cdFMC UID](images/cdfmc_uid.png "API Explorer")
 
 ### etc/telegraf.d/telegraf_cdo.conf
