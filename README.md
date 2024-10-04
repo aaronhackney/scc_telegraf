@@ -24,14 +24,16 @@ The telegraf starlark plugin is required. This is included with Telegraf 1.15+
 ### Environment variables
 See the SCC API documenation [here](https://developer.cisco.com/docs/cisco-defense-orchestrator/getting-started/#base-uri) for the base url for your tenant's region. See the sample .env file.
 ```
-export BASE_DIR=/home/user/scc_telegraf
-export SCC_BASE_URL=<SCC base URL>
-export SCC_TOKEN=<SCC API token>
-export INFLUX_BUCKET=<InfluxDB bucket>
-export INFLUX_TOKEN=<InfluxDB API Token>
-export INFLUXDB_URL=<InfluxDB URL>
-export INFLUX_ORG_NAME=<InfluxDB org name>
-export FMC_UID=<UID of the cdFMC>
+BASE_DIR=/home/user/scc_telegraf
+SCC_BASE_URL=<SCC base URL>
+SCC_TOKEN=<SCC API token>
+INFLUX_BUCKET=<InfluxDB bucket>
+INFLUX_TOKEN=<InfluxDB API Token>
+INFLUXDB_URL=<InfluxDB URL>
+INFLUX_ORG_NAME=<InfluxDB org name>
+FMC_UID=<UID of the cdFMC>
+UID=${UID}
+GID=${GID}
 ```
 
 Note that you can get your cdFMC UID from the cdFMC API Explorer under `System` `/api/fmc_platform/v1/info/domain`.
@@ -46,13 +48,12 @@ There is nothing that needs edited in this file. It simply formats the data in a
 ## Start the docker container
 `docker-compose --env-file .env up -d`
 
-## Troubleshooting
+## Troubleshooting, Tips, and Tricks
 - Run `docker-compose --env-file .env up` (without the -d) to see the log output in real time
 - Verify your env variables are correct in the shell. e.g. `echo $SCC_TOKEN`
-- View the log files (daemon mode)
-  - docker ps | grep telegraf
-  - docker logs <CONTAINER ID>
-- Add `debug=true` to an `[agent]` stanza at the top of `telegraf_cdo.conf`
+- View the log files (daemon mode) `docker logs telegraf`
+- In this compose file we are using sensitive variables like API keys from a clear text file for demonstration simplicity. It's recommended to follow best practices to use a password safe or [docker secrets](https://docs.docker.com/compose/how-tos/use-secrets/).
+- Add `debug=true` to an `[agent]` stanza at the top of `telegraf_cdo.conf` to increase logging verbosity
     ```
     [agent]
       debug = true
