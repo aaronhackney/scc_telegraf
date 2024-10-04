@@ -1,0 +1,20 @@
+version: '3'
+services:
+  telegraf:
+    image: docker.io/telegraf:latest
+    user: "${UID}:${GID}"
+    restart: unless-stopped
+    container_name: telegraf
+    environment:
+     - SCC_BASE_URL=${SCC_BASE_URL}
+     - SCC_TOKEN=${SCC_TOKEN}
+     - INFLUXDB_URL=${INFLUXDB_URL}
+     - INFLUX_BUCKET=${INFLUX_BUCKET}
+     - INFLUX_ORG_NAME=${INFLUX_ORG_NAME}
+     - INFLUX_TOKEN=${INFLUX_TOKEN}
+     - FMC_UID=${FMC_UID}
+
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ${BASE_DIR}/etc/telegraf/telegraf.d:/etc/telegraf/telegraf.d
+     - ${BASE_DIR}/starlark:/starlark
