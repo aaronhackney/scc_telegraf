@@ -36,8 +36,18 @@ UID=${UID}
 GID=${GID}
 ```
 
-Note that you can get your cdFMC UID from the cdFMC API Explorer under `System` `/api/fmc_platform/v1/info/domain`.
-![cdFMC UID](images/cdfmc_uid.png "API Explorer")
+#### Getting the FMC UID
+Note  you can get the UID of the cdFMC from the [Security Cloud Control API](https://developer.cisco.com/docs/cisco-defense-orchestrator/get-device-managers/). To make this API call, you will need to generate a [CDO API token](https://developer.cisco.com/docs/cisco-defense-orchestrator/authentication/#authentication) and then execute this `CuRL` command.
+
+```
+curl --location 'https://<SCC_BASE_URL>/v1/inventory/managers?q=deviceType:CDFMC' \
+--header 'Accept: application/json' \
+--header 'Authorization: <generated-api-token>'
+```
+
+- Replace `<SCC_BASE_URL>` with the base URL for your tenant's region (see [here](https://developer.cisco.com/docs/cisco-defense-orchestrator/getting-started/#base-uri)).
+- Replace `<generated-api-token>` with the API token you generated.
+
 
 ### etc/telegraf.d/telegraf_cdo.conf
 There is nothing that needs edited in this file other than the poll interval which at most and by default is set to every 5 minutes (API Throttled).
