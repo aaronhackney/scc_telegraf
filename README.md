@@ -4,8 +4,10 @@
 This is a demonstration of how to get Cisco Firewall Threat Defense appliance metrics from the SaaS firewall manager Cisco Secure Cloud Control (Formerly known as Cisco Defense Orchestrator or CDO) API and then store the metrics in InfluxDB. The API endpoint that this configuration hits is documented [here](https://developer.cisco.com/docs/cisco-defense-orchestrator/get-health-metrics-on-devices-managed-by-the-fmc-cdfmc-only/). Of course once the data is in InfluxDB it's easy to build visualizations for the data in Grafana.
 
 ## TLDR;
+- `git clone https://github.com/aaronhackney/scc_telegraf.git`
+- `cd scc_telegraf`
 - Edit .env file
-- docker-compose --env-file .env up -d
+- `docker-compose --env-file .env up -d`
 
 ## Requirements
 
@@ -47,6 +49,9 @@ There is nothing that needs edited in this file. It simply formats the data in a
 ## Troubleshooting
 - Run `docker-compose --env-file .env up` (without the -d) to see the log output in real time
 - Verify your env variables are correct in the shell. e.g. `echo $SCC_TOKEN`
+- View the log files (daemon mode)
+  - docker ps | grep telegraf
+  - docker logs <CONTAINER ID>
 - Add `debug=true` to an `[agent]` stanza at the top of `telegraf_cdo.conf`
     ```
     [agent]
