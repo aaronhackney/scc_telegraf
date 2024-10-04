@@ -40,7 +40,7 @@ GID=${GID}
 Note  you can get the UID of the cdFMC from the [Security Cloud Control API](https://developer.cisco.com/docs/cisco-defense-orchestrator/get-device-managers/). To make this API call, you will need to generate a [CDO API token](https://developer.cisco.com/docs/cisco-defense-orchestrator/authentication/#authentication) and then execute this `CuRL` command.
 
 ```
-curl --location 'https://<SCC_BASE_URL>/v1/inventory/managers?q=deviceType:CDFMC' \
+curl --location 'https://<SCC_BASE_URL>/api/rest/v1/inventory/managers?q=deviceType:CDFMC' \
 --header 'Accept: application/json' \
 --header 'Authorization: <generated-api-token>'
 ```
