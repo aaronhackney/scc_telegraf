@@ -42,7 +42,7 @@ Note  you can get the UID of the cdFMC from the [Security Cloud Control API](htt
 ```
 curl --location 'https://<SCC_BASE_URL>/api/rest/v1/inventory/managers?q=deviceType:CDFMC' \
 --header 'Accept: application/json' \
---header 'Authorization: <generated-api-token>'
+--header 'Authorization: Bearer <generated-api-token>'
 ```
 
 - Replace `<SCC_BASE_URL>` with the base URL for your tenant's region (see [here](https://developer.cisco.com/docs/cisco-defense-orchestrator/getting-started/#base-uri)).
